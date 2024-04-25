@@ -1,0 +1,43 @@
+type Query {
+    problems(page: Int, limit: Int): PagedProblems
+    problem(id: String): Problem
+    snippet(id: String, language: String): CodeSnippet
+    adminProblem(id: String): Problem
+}
+
+type PagedProblems {
+    problems: [Problem]
+    currentPage: Int,
+    totalPages: Int
+}
+
+type Problem {
+    id: ID!,
+    title: String,
+    problemNo: Int,
+    difficulty: String,
+    likes: Int,
+    dislikes: Int,
+    description: String,
+    examples: [ProblemExample],
+    snippets: [CodeSnippet],
+    testcases: [ProblemTestcase],
+    constraints: [String]
+}
+
+type ProblemExample {
+    input: String,
+    output: String,
+    explanation: String,
+    imageUrls: [String]
+}
+
+type CodeSnippet {
+    snippet: String
+}
+
+type ProblemTestcase {
+    id: Int,
+    input: String,
+    output: String
+}
